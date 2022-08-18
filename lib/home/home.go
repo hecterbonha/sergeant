@@ -1,13 +1,10 @@
 package home
 
-import (
-	"github.com/labstack/echo/v4"
-)
+import "github.com/gin-gonic/gin"
 
-// HomeRouter : HomeRouter struct
-type HomeRouter struct{}
-
-// Init : Init Router
-func (ctrl HomeRouter) Init(g *echo.Group) {
-	g.GET("/ping", ctrl.Ping)
+func Routes(route *gin.Engine) {
+	home := route.Group("/")
+	{
+		home.GET("/ping", PingHandler)
+	}
 }

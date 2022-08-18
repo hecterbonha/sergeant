@@ -1,15 +1,16 @@
 package home
 
 import (
-	"net/http"
-
-	"github.com/labstack/echo/v4"
+	"github.com/gin-gonic/gin"
 )
 
-// Ping : Ping Router
-func (HomeRouter) Ping(c echo.Context) error {
+func PingHandler(c *gin.Context) {
+	nameFromQuery := c.Query("name")
 
-	return c.JSON(http.StatusOK, echo.Map{
-		"messages": "Hello from the future!",
+	message := GetPingMessages(nameFromQuery)
+
+	c.JSON(200, gin.H{
+		"message": message,
+		"status":  "OK",
 	})
 }
