@@ -6,6 +6,13 @@ import (
 
 func PingHandler(c *gin.Context) {
 	nameFromQuery := c.Query("name")
+	if nameFromQuery == "" {
+		c.JSON(400, gin.H{
+			"message": "MALFORMED_REQUEST_FORMAT",
+			"status":  "NOT_OK",
+		})
+		return
+	}
 
 	message := GetPingMessages(nameFromQuery)
 

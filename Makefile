@@ -6,3 +6,6 @@ serve:
 
 dev:
 	./bin/air
+
+test:
+	go test -v ./...
