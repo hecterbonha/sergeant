@@ -1,7 +1,11 @@
 package shared
 
 const (
-	SuccessCode string = "SUCCESS"
-	WarningCode string = "WARNING"
-	ErrorCode   string = "ERROR"
+	SuccessStatusCode string = "SUCCESS"
+	WarningStatusCode string = "WARNING"
+	ErrorStatusCode   string = "ERROR"
+)
+
+const (
+	MalformedRequestMessage string = "MALFORMED_REQUEST_OBJECT"
 )
