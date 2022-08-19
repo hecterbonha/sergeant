@@ -1,23 +1,38 @@
 package home
 
 import (
+	"net/http"
+
 	"github.com/gin-gonic/gin"
+	"github.com/hecterbonha/sergeant/lib/shared"
 )
 
-func PingHandler(c *gin.Context) {
-	nameFromQuery := c.Query("name")
+type PingHandlerResponse struct {
+	Message string `json:"message"`
+	Status  string `json:"status"`
+}
+
+type PingHandlerErrorResponse struct {
+	Message string `json:"message"`
+	Status  string `json:"status"`
+}
+
+func PingHandler(ctx *gin.Context) {
+	nameFromQuery := ctx.Query("name")
+	locales := ctx.MustGet("locales").(string)
+
 	if nameFromQuery == "" {
-		c.JSON(400, gin.H{
-			"message": "MALFORMED_REQUEST_FORMAT",
-			"status":  "NOT_OK",
+		ctx.JSON(http.StatusBadRequest, &PingHandlerErrorResponse{
+			Message: "MALFORMED_REQUEST_FORMAT",
+			Status:  shared.ErrorCode,
 		})
 		return
 	}
 
-	message := GetPingMessages(nameFromQuery)
+	message := GetPingMessages(nameFromQuery, locales)
 
-	c.JSON(200, gin.H{
-		"message": message,
-		"status":  "OK",
+	ctx.JSON(http.StatusOK, &PingHandlerResponse{
+		Message: message,
+		Status:  shared.SuccessCode,
 	})
 }

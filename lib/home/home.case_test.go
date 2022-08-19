@@ -6,9 +6,13 @@ import (
 
 func TestGetPingMessages(t *testing.T) {
 	name := "Gladys"
-	msg := GetPingMessages(name)
+	msgEN := GetPingMessages(name, "en")
+	msgID := GetPingMessages(name, "id")
 
-	if msg != "This is the message you'll get, Gladys" {
+	if msgEN != "This is the message you'll get, Gladys" {
+		t.Error("Test Failed")
+	}
+	if msgID != "Inilah pesan yang kamu dapatkan, Gladys" {
 		t.Error("Test Failed")
 	}
 }

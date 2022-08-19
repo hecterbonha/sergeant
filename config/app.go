@@ -1,7 +1,17 @@
 package config
 
-func RehearsalURL() string {
-	insteadToken := Config("REHEARSAL_URL")
+import "github.com/gin-gonic/gin"
 
-	return insteadToken
+func RehearsalURL() string {
+	i := Config("REHEARSAL_URL")
+
+	return i
+}
+
+func GinMode() string {
+	g := Config("GIN_MODE")
+	if g == "release" {
+		return gin.ReleaseMode
+	}
+	return gin.DebugMode
 }
