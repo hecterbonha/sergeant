@@ -5,7 +5,7 @@ serve:
 	./bin/sergeant
 
 dev:
-	./bin/air
-
+	bash dev.sh
+ 
 test:
 	go test -v ./...
