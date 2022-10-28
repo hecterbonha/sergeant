@@ -8,6 +8,18 @@
     <title>Loading...</title>
   </head>
   <body>
+    <script>
+      (function () {
+        try {
+          const mode = localStorage.getItem("theme");
+          const supportDarkMode =
+            window.matchMedia("(prefers-color-scheme: dark)").matches === true;
+          if (!mode && supportDarkMode) document.body.classList.add("dark");
+          if (!mode) return;
+          document.body.classList.add(mode);
+        } catch (e) {}
+      })();
+    </script>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="instead"></div>
 

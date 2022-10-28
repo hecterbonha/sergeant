@@ -8,7 +8,7 @@ export default function Core() {
   return (
     <>
       <NavigationBar />
-      <div class="flex flex-row justify-center items-center min-h-screen bg-zinc-900 text-zinc-50">
+      <div class="flex flex-row justify-center items-center min-h-screen bg-zinc-100 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100">
         <AppRouter />
       </div>
       <WalletPopUp />

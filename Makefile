@@ -1,11 +1,14 @@
 build:
-	go build -o bin/sergeant main.go
+	go build -o bin/sergeant -tags=go_json
 	
 serve:
 	./bin/sergeant
 
 dev:
-	bash dev.sh
- 
+	./bin/air
+
+ui:
+	cd web && pnpm run dev
+
 test:
 	go test -v ./...
