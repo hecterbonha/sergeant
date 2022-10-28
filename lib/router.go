@@ -6,12 +6,14 @@ import (
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/hecterbonha/sergeant/config"
+	"github.com/hecterbonha/sergeant/db"
 	"github.com/hecterbonha/sergeant/lib/auth"
 	"github.com/hecterbonha/sergeant/lib/home"
 )
 
 func Server() {
 	gin.SetMode(config.GinMode())
+	db.Init()
 	router := gin.Default()
 	router.SetTrustedProxies(nil)
 	home.Routes(router)
@@ -21,5 +23,5 @@ func Server() {
 		AllowMethods: []string{"GET", "POST"},
 		MaxAge:       12 * time.Hour,
 	}))
-	router.Run(":8080")
+	router.Run(config.SergeantURL())
 }

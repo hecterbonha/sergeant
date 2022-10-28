@@ -1,11 +1,19 @@
 package config
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/gin"
+)
+
+func SergeantURL() string {
+	s := Config("SERGEANT_URL")
+
+	return s
+}
 
 func RehearsalURL() string {
-	i := Config("REHEARSAL_URL")
+	s := Config("REHEARSAL_URL")
 
-	return i
+	return s
 }
 
 func GinMode() string {
@@ -14,4 +22,9 @@ func GinMode() string {
 		return gin.ReleaseMode
 	}
 	return gin.DebugMode
+}
+
+func PostgresURL() string {
+	p := Config("POSTGRES_URL")
+	return p
 }
