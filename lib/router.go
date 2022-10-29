@@ -13,15 +13,15 @@ import (
 
 func Server() {
 	gin.SetMode(config.GinMode())
-	db.Init()
-	router := gin.Default()
-	router.SetTrustedProxies(nil)
-	home.Routes(router)
-	auth.Routes(router)
-	router.Use(cors.New(cors.Config{
+	db.ConnectionInit()
+	app := gin.Default()
+	app.SetTrustedProxies(nil)
+	home.Routes(app)
+	auth.Routes(app)
+	app.Use(cors.New(cors.Config{
 		AllowOrigins: []string{config.RehearsalURL()},
 		AllowMethods: []string{"GET", "POST"},
 		MaxAge:       12 * time.Hour,
 	}))
-	router.Run(config.SergeantURL())
+	app.Run(config.SergeantURL())
 }

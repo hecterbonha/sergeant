@@ -22,9 +22,7 @@ func PingHandler(ctx *gin.Context) {
 		})
 		return
 	}
-
 	message := GetPingMessages(nameFromQuery, locales)
-
 	ctx.JSON(http.StatusOK, &PingHandlerResponse{
 		Message: message,
 		Status:  shared.SuccessStatusCode,

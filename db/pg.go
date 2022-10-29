@@ -11,15 +11,14 @@ import (
 
 var Postgres *gorm.DB
 
-func Init() {
+func ConnectionInit() {
 	dbURL := config.PostgresURL()
 
 	db, err := gorm.Open(postgres.Open(dbURL), &gorm.Config{})
-
 	if err != nil {
 		log.Fatalln(err)
 	}
-	db.AutoMigrate(&model.User{}, &model.Profile{}, &model.Credentials{})
 
+	db.AutoMigrate(&model.User{}, &model.Profile{}, &model.Credentials{})
 	Postgres = db
 }
